@@ -15,6 +15,12 @@ const handleProfile = (req, res) => {
   res.send("You are on my profile");
 };
 
-app.get("/profile", handleProfile);
+const betweenHome = (req, res, next) => {
+  console.log("Between middleware");
+  next();
+};
+
+app.use(betweenHome);
 app.get("/", handleHome);
+app.get("/profile", handleProfile);
 app.listen(PORT, handleListening);
