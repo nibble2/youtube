@@ -8,7 +8,7 @@ const handleListening = () => {
 };
 
 const handleHome = (req, res) => {
-  res.send("Hello Home");
+  res.send("Hello nodemon");
 };
 
 const handleProfile = (req, res) => {
