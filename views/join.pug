@@ -1,4 +1,11 @@
 extends layouts/main.pug
 
 block content
-    p Join
+    .form__container
+        form(action="/login", meghod="post")
+            input(type="text", name="name", placeholder="Full Name")
+            input(type="email", name="email", placeholder="Email")
+            input(type="password", name="password", placeholder="Password")
+            input(type="password", name="passwordCheck", placeholder="Password Check")
+            input(type="submit", value="Join Now")
+        include partials/socialLogin
