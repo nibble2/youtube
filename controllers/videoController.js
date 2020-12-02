@@ -4,13 +4,12 @@ import Video from '../models/Video';
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({}); // DB에 있는 모든 Video 가져옴
-    console.log(videos);
     res.render('home', {
       pageTitle: 'Home',
       videos,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.render('home', {
       pageTitle: 'Home',
       videos: [],
@@ -19,7 +18,7 @@ export const home = async (req, res) => {
 };
 
 export const search = (req, res) => {
-  console.log(videos);
+  // console.log(videos);
   const {
     query: {
       term: searchingBy
@@ -62,20 +61,37 @@ export const videoDetail = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    console.log(video);
     res.render("videoDetail", {
       pageTitle: "video Detail",
       video
     });
   } catch (error) {
-    console.log("error");
+    res.redirect(routes.home);
   }
 };
 
-export const editVideo = (req, res) =>
-  res.render('editVideo', {
-    pageTitle: 'Edit Video',
-  });
+export const getEditVideo = async (req, res) => {
+  const {
+    params: {
+      id
+    }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    res.render("editVideo", {
+      pageTitle: "editVideo",
+      video
+    });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+}
+
+export const postEditVideo = (req, res) => {
+
+}
+
+
 export const deleteVideo = (req, res) =>
   res.render('deleteVideo', {
     pageTitle: 'Delete Video',
