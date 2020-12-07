@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev:server": "nodemon --exec babel-node init.js --delay 2",
-		"dev:assets": "webpack"
+		"dev:assets": "WEBPACK_ENV=development webpack -w",
+		"build:assets": "WEBPACK_ENV=production webpack"
 	},
 	"repository": {
 		"type": "git",
@@ -23,6 +24,7 @@
 		"@babel/node": "^7.12.6",
 		"@babel/preset-env": "^7.12.1",
 		"autoprefixer": "^10.0.4",
+		"babel-loader": "^8.2.2",
 		"body-parser": "^1.19.0",
 		"cookie-parser": "^1.4.5",
 		"css-loader": "^5.0.1",
