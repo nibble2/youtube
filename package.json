@@ -29,7 +29,9 @@
 		"mongoose": "^5.10.18",
 		"morgan": "^1.10.0",
 		"multer": "^1.4.2",
-		"pug": "^3.0.0"
+		"pug": "^3.0.0",
+		"webpack": "^5.10.0",
+		"webpack-cli": "^4.2.0"
 	},
 	"devDependencies": {
 		"eslint": "^7.14.0",
