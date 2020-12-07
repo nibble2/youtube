@@ -1,3 +1,6 @@
+@import "./config/_variable.scss";
+
+
 body {
-    background-color: red;
+    background-color: $bgColor;
 }
