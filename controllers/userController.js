@@ -1,6 +1,6 @@
-import passport from "passport";
+import passport from 'passport';
 import routes from '../routes';
-import User from "../models/User";
+import User from '../models/User';
 
 export const getJoin = (req, res) => {
 	res.render('join', {
@@ -9,12 +9,7 @@ export const getJoin = (req, res) => {
 };
 export const postJoin = async (req, res, next) => {
 	const {
-		body: {
-			name,
-			email,
-			password,
-			passwordCheck
-		},
+		body: { name, email, password, passwordCheck },
 	} = req;
 	if (password !== passwordCheck) {
 		res.status(400);
@@ -25,7 +20,7 @@ export const postJoin = async (req, res, next) => {
 		try {
 			const user = await User({
 				name,
-				email
+				email,
 			});
 			await User.register(user, password);
 			next();
@@ -42,15 +37,19 @@ export const getLogin = (req, res) => {
 	});
 };
 
-export const postLogin = passport.authenticate("local", {
+export const postLogin = passport.authenticate('local', {
 	failureRedirect: routes.login,
-	successRedirect: routes.home
+	successRedirect: routes.home,
 });
 
-export const logout = (req, res) =>
-	res.render('logout', {
-		pageTitle: 'Logout',
-	});
+export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
+	console.log(accessToken, refreshToken, profile, cb);
+};
+
+export const logout = (req, res) => {
+	req.loghout();
+	res.redirect(routes.home);
+};
 export const userDetail = (req, res) =>
 	res.render('userDetail', {
 		pageTitle: 'User Detail',
