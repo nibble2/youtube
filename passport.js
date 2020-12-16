@@ -4,6 +4,7 @@ import User from './models/User';
 import {
     githubLoginCallback
 } from './controllers/userController';
+import routes from './routes';
 
 //아이디 찾아서 존재하면 반환
 passport.use(User.createStrategy());
@@ -12,9 +13,9 @@ passport.use(User.createStrategy());
 passport.use(
     new GithubStrategy({
             clientID: process.env.GH_ID,
-            clientSecret: process.GH_SECRET,
+            clientSecret: process.env.GH_SECRET,
             //3. 로그인 하고 돌아 온 후 callblackURL로 접근
-            callbackURL: 'http://localhost:4000/auth/github/callback',
+            callbackURL: `http://localhost:4000${routes.githubCallback}`,
         },
         //4. 라우터와 컨트롤러에서 로그인이 성공적으로 이뤄졌으면 실행한다.
         githubLoginCallback,
