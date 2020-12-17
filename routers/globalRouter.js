@@ -12,7 +12,8 @@ import {
     postJoin,
     logout,
     githubLogin,
-    postGithubLogIn
+    postGithubLogIn,
+    getMe
 } from "../controllers/userController";
 import {
     onlyPublic,
@@ -43,4 +44,7 @@ globalRouter.get(
     //5. 모든 로그인 활동이 완료되면 home으로 돌려보내기
     postGithubLogIn
 );
+
+globalRouter.get(routes.me, getMe);
+
 export default globalRouter;
