@@ -114,7 +114,7 @@ export const userDetail = async (req, res) => {
 		res.redirect(routes.home);
 	}
 }
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
 	res.render('editProfile', {
 		pageTitle: 'Edit Profile',
 	});
