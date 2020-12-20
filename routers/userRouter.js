@@ -3,6 +3,7 @@ import routes from "../routes";
 import {
     userDetail,
     getEditProfile,
+    postEditProfile,
     changePassword
 } from "../controllers/userController";
 import {
@@ -13,6 +14,7 @@ const userRouter = express.Router();
 
 
 userRouter.get(routes.editProfile, onlyPrivate, getEditProfile);
+userRouter.post(routes.editProfile, onlyPrivate, postEditProfile);
 userRouter.get(routes.changePassword, onlyPrivate, changePassword);
 userRouter.get(routes.userDetail(), userDetail);
 
