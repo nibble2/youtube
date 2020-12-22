@@ -1,4 +1,4 @@
-extends layouts/main.pug
+extends layouts/main
 
 block content
     .form-container
@@ -6,6 +6,6 @@ block content
             div.fileUpload
                 label(for="file") Video File
                 input(type="file", id="file", name="videoFile", required=true, accept="video/*")
-                input(type="text", placeholder="Title", name="title", required=true)
-                textarea(name="description", placeholder="Description", required=true)
-                input(type="submit", value="Upload Video")
+            input(type="text", placeholder="Title", name="title", required=true)
+            textarea(name="description", placeholder="Description", required=true)
+            input(type="submit", value="Upload Video")
