@@ -57,11 +57,12 @@ export const postUpload = async (req, res) => {
 			description
 		},
 		file: {
-			path
+			location
 		}
 	} = req;
+	// console.log(req.path);
 	const newVideo = await Video.create({
-		fileUrl: path,
+		fileUrl: location,
 		title,
 		description,
 		creator: req.user.id
@@ -99,8 +100,10 @@ export const getEditVideo = async (req, res) => {
 	} = req;
 	try {
 		const video = await Video.findById(id);
-		// console.log(req.user.id)
-		if (video.creator !== req.user.id) {
+		// console.log(typeof (req.user.id))
+		// console.log(typeof (video.creator));
+		//TODO
+		if (video.creator !== JSON.stringify(req.user.id)) {
 			throw Error();
 		} else {
 			res.render('editVideo', {
@@ -109,6 +112,7 @@ export const getEditVideo = async (req, res) => {
 			});
 		}
 	} catch (error) {
+		console.log(error);
 		res.redirect(routes.home);
 	}
 };
