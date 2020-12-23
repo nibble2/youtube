@@ -156,7 +156,6 @@ export const deleteVideo = async (req, res) => {
 };
 
 // Register Video View
-
 export const postRegisterView = async (req, res) => {
 	const {
 		params: {
