@@ -121,3 +121,4 @@ uploads
 .eslinrc.json
 .prettierrc
 static
+build
