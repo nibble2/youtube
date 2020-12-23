@@ -1,3 +1,5 @@
+import getBlobDuration from "get-blob-duration";
+
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayButton");
@@ -101,8 +103,12 @@ const getCurrentTime = () => {
     currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
-const setTotalTime = () => {
-    const totalTimeString = formatDate(videoPlayer.duration);
+const setTotalTime = async () => {
+    //녹화된 영상을 다운받고 그걸 서버에 요청해서 응답을 받으면 반환
+    const blob = await fetch(videoPlayer.src).then(response => response.blob());
+    const duration = await getBlobDuration(blob);
+    // console.log(duration);
+    const totalTimeString = formatDate(duration);
     totalTime.innerHTML = totalTimeString;
     setInterval(getCurrentTime, 1000);
 }
