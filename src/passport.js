@@ -16,7 +16,7 @@ passport.use(
             clientSecret: process.env.GH_SECRET,
             //3. 로그인 하고 돌아 온 후 callblackURL로 접근
             callbackURL: process.env.PRODUCTION ?
-                `https://calm-citadel-50531.herokuapp.com/${routes.githubCallback}` : `http://localhost:4000/${routes.githubCallback}`
+                `https://calm-citadel-50531.herokuapp.com${routes.githubCallback}` : `http://localhost:4000${routes.githubCallback}`
         },
         //4. 라우터와 컨트롤러에서 로그인이 성공적으로 이뤄졌으면 실행한다.
         githubLoginCallback,
