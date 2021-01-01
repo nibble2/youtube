@@ -9,6 +9,12 @@ html
         title #{pageTitle} | #{siteName}
         link(rel="stylesheet", href="/static/styles.css")
     body
+        if messages.error
+            span=messages.error
+        else if messages.info
+            span=messages.info
+        else if messages.succes
+            span=messages.succes
         include ../partials/header
         main
             block content

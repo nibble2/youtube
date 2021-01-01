@@ -7,6 +7,7 @@ import passport from 'passport';
 import mongoose from "mongoose";
 import session from 'express-session';
 import path from "path";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import {
 	localsMiddleware
@@ -49,6 +50,8 @@ app.use(
 		})
 	}),
 );
+app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(localsMiddleware);
