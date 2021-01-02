@@ -26,21 +26,19 @@ function handlePlayClick() {
     }
 }
 
-const handleVolumeClick = () => {
+function handleVolumeClick() {
     if (videoPlayer.muted) {
         videoPlayer.muted = false;
-        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>'
+        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
         volumeRange.value = videoPlayer.volume;
-
     } else {
-        videoPlayer.muted = true;
-        volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'
         volumeRange.value = 0;
+        videoPlayer.muted = true;
+        volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
     }
-
 }
 
-const exitFullScreen = () => {
+function exitFullScreen() {
     fullScrnBtn.innerHTML = '<i class="fas fa-expand"></i>';
     fullScrnBtn.addEventListener("click", goFullScreen);
     if (document.exitFullscreen) {
@@ -54,7 +52,7 @@ const exitFullScreen = () => {
     }
 }
 
-const goFullScreen = () => {
+function goFullScreen() {
     if (videoContainer.requestFullscreen) {
         videoContainer.requestFullscreen();
     } else if (videoContainer.mozRequestFullScreen) {
@@ -82,67 +80,50 @@ const formatDate = seconds => {
         minutes = `0${minutes}`;
     }
     if (seconds < 10) {
-
-        const init = () => {
-            playBtn.addEventListener("click", handlePlayClick);
-            volumeBtn.addEventListener("click", handleVolumeClick);
-            fullScrnBtn.addEventListener("click", goFullScreen);
-        }
-
-        if (videoContainer) {
-            init();
-        }
-        if (totalSeconds < 10) {
-            totalSeconds = `0${totalSeconds}`;
-        }
+        totalSeconds = `0${totalSeconds}`;
     }
     return `${hours}:${minutes}:${totalSeconds}`;
 };
 
-const getCurrentTime = () => {
+function getCurrentTime() {
     currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
-const setTotalTime = async () => {
-    //녹화된 영상을 다운받고 그걸 서버에 요청해서 응답을 받으면 반환
+async function setTotalTime() {
     const blob = await fetch(videoPlayer.src).then(response => response.blob());
     const duration = await getBlobDuration(blob);
-    // console.log(duration);
     const totalTimeString = formatDate(duration);
     totalTime.innerHTML = totalTimeString;
     setInterval(getCurrentTime, 1000);
 }
 
-const handleEnded = () => {
+function handleEnded() {
     registerView();
     videoPlayer.currentTime = 0;
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
-
 }
 
-const handleDrag = event => {
+function handleDrag(event) {
     const {
         target: {
             value
         }
     } = event;
-
     videoPlayer.volume = value;
-
     if (value >= 0.6) {
-        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>'
+        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
     } else if (value >= 0.2) {
-        volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>'
+        volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
     } else {
-        volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>'
+        volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
     }
 }
 
-const init = () => {
+function init() {
     videoPlayer.volume = 0.5;
     playBtn.addEventListener("click", handlePlayClick);
-    playBtn.addEventListener("click", handlePlayClick);
     volumeBtn.addEventListener("click", handleVolumeClick);
+    fullScrnBtn.addEventListener("click", goFullScreen);
     videoPlayer.addEventListener("loadedmetadata", setTotalTime);
     videoPlayer.addEventListener("ended", handleEnded);
     volumeRange.addEventListener("input", handleDrag);
