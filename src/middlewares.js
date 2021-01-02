@@ -26,6 +26,9 @@ const multerAvatar = multer({
 	})
 });
 
+export const uploadVideo = multerVideo.single('videoFile');
+export const uploadAvatar = multerAvatar.single("avatar");
+
 export const localsMiddleware = (req, res, next) => {
 	res.locals.siteName = 'Youtube';
 	res.locals.routes = routes;
@@ -49,6 +52,3 @@ export const onlyPrivate = (req, res, next) => {
 		res.redirect(routes.home);
 	}
 }
-
-export const uploadVideo = multerVideo.single('videoFile');
-export const uploadAvatar = multerAvatar.single("avatar");

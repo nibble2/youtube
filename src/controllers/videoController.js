@@ -7,12 +7,12 @@ export const home = async (req, res) => {
 		const videos = await Video.find({}).sort({
 			_id: -1,
 		}); // DB에 있는 모든 Video 가져옴
+		console.log(videos);
 		res.render('home', {
 			pageTitle: 'Home',
 			videos,
 		});
 	} catch (error) {
-		// console.log(error);
 		res.render('home', {
 			pageTitle: 'Home',
 			videos: [],
@@ -84,7 +84,7 @@ export const videoDetail = async (req, res) => {
 		const video = await Video.findById(id)
 			.populate("creator")
 			.populate("comments");
-		console.log(video);
+		// console.log(video);
 		res.render("videoDetail", {
 			pageTitle: video.title,
 			video
@@ -134,7 +134,7 @@ export const postEditVideo = async (req, res) => {
 			title,
 			description,
 		}, );
-		res.redirect(routes.videoDetail(video.id));
+		res.redirect(routes.videoDetail(id));
 	} catch (error) {
 		res.redirect(routes.home);
 	}
