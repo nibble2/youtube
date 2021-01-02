@@ -10,8 +10,6 @@ block content
             if loggedUser && video.creator.id === loggedUser.id
                 a(href=routes.editVideo(video.id))
                     button Edit video
-            p=video.creator.id
-            p=loggedUser.id
             h5.video__title=video.title
             p.video__description=video.description
             if video.views === 1

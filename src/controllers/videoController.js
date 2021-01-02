@@ -76,13 +76,15 @@ export const postUpload = async (req, res) => {
 export const videoDetail = async (req, res) => {
 	const {
 		params: {
-			id
+			id //video id
 		}
 	} = req;
+
 	try {
 		const video = await Video.findById(id)
 			.populate("creator")
 			.populate("comments");
+		console.log(video);
 		res.render("videoDetail", {
 			pageTitle: video.title,
 			video
@@ -100,10 +102,7 @@ export const getEditVideo = async (req, res) => {
 	} = req;
 	try {
 		const video = await Video.findById(id);
-		// console.log(typeof (req.user.id))
-		// console.log(typeof (video.creator));
-		//TODO
-		if (video.creator !== JSON.stringify(req.user.id)) {
+		if (String(video.creator) !== req.user.id) {
 			throw Error();
 		} else {
 			res.render('editVideo', {
