@@ -148,3 +148,9 @@ input {
         outline: none;
     }
 }
+
+a {
+    &:visited {
+        text-decoration: none
+    }
+}
