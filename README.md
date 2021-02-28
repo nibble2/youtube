@@ -1,5 +1,6 @@
-# youtube clone
+[![Build Status](https://travis-ci.com/nibble2/youtube.svg?branch=main)](https://travis-ci.com/nibble2/youtube)
 
+# youtube clone
 
 ## Description
 
