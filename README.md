@@ -1,8 +1,9 @@
 # youtube clone
 
+
 ## Description
 
-코딩 교육 사이트인 [노마드코더](https://nomadcoders.co/)에서 유튜브 클론코딩을 수강하여 클론코딩한 프로젝트입니다.
+유튜브 클론코딩한 프로젝트입니다.
 
 ---
 
@@ -63,4 +64,4 @@ dev mode    : npm run dev:server, npm run dev:assets
 
 ## More develop
 
-[유튜브 클론코딩 노션](https://www.notion.so/nibble2/2959c8f28aaf4580846cfc93b2d83b63)
+[유튜브 클론코딩 노션](https://www.notion.so/nibble2/e5d617c7b1204da7bee531b0a13a85eb)
