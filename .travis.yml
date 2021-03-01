@@ -18,6 +18,10 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: youtube-clone-artifact
+    key: youtube-clone-web-service.zip #S3 사용할 파일 지정
+    bundle_type: zip
+    application: youtube-clone-codedeploy #codedeploy 애플리케이션 이름
+    deployment_group: youtube-clone-group #codedeploy group 배포 그룹 이름
     region: ap-northeast-2
     skip_cleanup: true
     acl: private
