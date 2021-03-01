@@ -36,6 +36,8 @@ deploy:
     deployment_group: youtube-clone-group #codedeploy group 배포 그룹 이름
     region: ap-northeast-2
     wait-until-deployed: true
+    on:
+      branch: main
 
 notifications:
   email:
