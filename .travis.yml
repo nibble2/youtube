@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - '14'
+
+branches:
+  only:
+    - main
+
 script:
   - echo '******* Build starts *******'
   - echo 'Installing Dependencies'
@@ -23,8 +28,6 @@ deploy:
     acl: private
     local_dir: deploy
     wait-until-deployed: true
-    on:
-      branch: main
 
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
@@ -36,8 +39,6 @@ deploy:
     deployment_group: youtube-clone-group #codedeploy group 배포 그룹 이름
     region: ap-northeast-2
     wait-until-deployed: true
-    on:
-      branch: main
 
 notifications:
   email:
