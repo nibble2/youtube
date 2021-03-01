@@ -5,3 +5,26 @@ script:
   - echo '******* Build starts *******'
   - echo 'Installing Dependencies'
   - npm install
+
+# 코드 압축 후 s3 전송
+before_deploy:
+  - zip -r youtube-clone-web-service *
+  - mkdir -p deploy
+  - mv youtube-clone-web-service.zip deploy/youtube-clone-web-service.zip
+
+# 압축된 파일 배포
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: youtube-clone-artifact
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
+notifications:
+  email:
+    recipients:
+      - vanilaleedana@gmail.com
