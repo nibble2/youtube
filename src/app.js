@@ -10,7 +10,7 @@ import path from "path";
 import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import {
-	localsMiddleware
+    localsMiddleware
 } from './middlewares';
 import routes from './routes';
 import globalRouter from './routers/globalRouter';
@@ -25,9 +25,9 @@ const app = express();
 const CokieStore = MongoStore(session);
 
 app.use(
-	helmet({
-		contentSecurityPolicy: false,
-	})
+    helmet({
+        contentSecurityPolicy: false,
+    })
 );
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "views"));
@@ -35,24 +35,26 @@ app.use('/static', express.static(path.join(__dirname, "static")));;
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(
-	bodyParser.urlencoded({
-		extended: true,
-	}),
+    bodyParser.urlencoded({
+        extended: true,
+    }),
 );
 app.use(morgan('dev'));
+//쿠키 해독
 app.use(
-	session({
-		secret: process.env.COOKIE_SECRET,
-		resave: true,
-		saveUninitialized: false,
-		store: new CokieStore({
-			mongooseConnection: mongoose.connection
-		})
-	}),
+    session({
+        secret: process.env.COOKIE_SECRET,
+        resave: true,
+        saveUninitialized: false,
+        store: new CokieStore({
+            mongooseConnection: mongoose.connection
+        })
+    }),
 );
 app.use(flash());
 
 app.use(passport.initialize());
+//해석된 쿠키들이 저장, 그 후 deserialize에 할당
 app.use(passport.session());
 app.use(localsMiddleware);
 
