@@ -16,8 +16,17 @@ export const postJoin = async(req, res, next) => {
             passwordCheck
         },
     } = req;
+    const usedEmail = await User.findOne({
+        email
+    });
     if (password !== passwordCheck) {
         req.flash("error", "Passwords don't match");
+        res.status(400);
+        res.render('join', {
+            pageTitle: 'Join',
+        });
+    } else if (usedEmail) {
+        req.flash("error", "ID already exists");
         res.status(400);
         res.render('join', {
             pageTitle: 'Join',
