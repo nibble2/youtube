@@ -3,7 +3,6 @@
 # youtube clone
 
 ## Description
-
 유튜브 클론코딩한 프로젝트입니다.
 
 ---
