@@ -10,7 +10,6 @@
 ## Project
 
 더 자세한 사항은 [노션](https://www.notion.so/nibble2/e5d617c7b1204da7bee531b0a13a85eb)을 확인해주세요.
-http://ec2-3-35-218-89.ap-northeast-2.compute.amazonaws.com/
 
 ## ![detail.pug](images/detail.png)
 
